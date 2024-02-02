@@ -1,0 +1,19 @@
+E:\220953138\Notepad\Notepad\bin\Debug\Notepad.exe.config
+E:\220953138\Notepad\Notepad\bin\Debug\Notepad.exe
+E:\220953138\Notepad\Notepad\bin\Debug\Notepad.pdb
+E:\220953138\Notepad\Notepad\obj\Debug\Notepad.Form1.resources
+E:\220953138\Notepad\Notepad\obj\Debug\Notepad.Properties.Resources.resources
+E:\220953138\Notepad\Notepad\obj\Debug\Notepad.csproj.GenerateResource.Cache
+E:\220953138\Notepad\Notepad\obj\Debug\Notepad.exe
+E:\220953138\Notepad\Notepad\obj\Debug\Notepad.pdb
+E:\220953138\Notepad\Notepad\obj\Debug\Notepad.csprojResolveAssemblyReference.cache
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Notepad\Notepad\bin\Debug\Notepad.exe.config
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Notepad\Notepad\bin\Debug\Notepad.exe
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Notepad\Notepad\bin\Debug\Notepad.pdb
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Notepad\Notepad\obj\Debug\Notepad.csproj.AssemblyReference.cache
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Notepad\Notepad\obj\Debug\Notepad.Form1.resources
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Notepad\Notepad\obj\Debug\Notepad.Properties.Resources.resources
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Notepad\Notepad\obj\Debug\Notepad.csproj.GenerateResource.cache
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Notepad\Notepad\obj\Debug\Notepad.csproj.CoreCompileInputs.cache
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Notepad\Notepad\obj\Debug\Notepad.exe
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Notepad\Notepad\obj\Debug\Notepad.pdb

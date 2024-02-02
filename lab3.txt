@@ -1,0 +1,233 @@
+i)create tables 
+
+create table person(
+driver_id varchar(30),
+name varchar(50),
+address varchar(100),
+primary key(driver_id));
+
+create table car(
+regno varchar(20) primary key,
+model varchar(30),
+year int);
+
+create table accident(
+report_number int primary key,
+accd_date date,
+location varchar(50));
+
+create table owns(
+driver_id varchar(30),
+regno varchar(20),
+primary key(driver_id,regno));
+alter table owns add foreign key (driver_id) references person(driver_id);
+alter table owns add foreign key (regno) references car(regno);
+
+create table participated(
+driver_id varchar(30),
+regno varchar(20),
+damage_amount int,
+report_number int,
+primary key(driver_id,regno,report_number),
+foreign key (regno) references car(regno),
+foreign key (driver_id) references person(driver_id),
+constraint fkey foreign key (report_number) references accident(report_number) on delete cascade
+);
+
+ii) Enter 5 tuples for each relation
+I] 
+insert into person
+values('AA19830','Vedika S','145-Prime Estate,Kharadi,Pune');
+
+insert into person
+values('MT739023','Vivaan V','A-23,Grand Living,Indiranagar,Delhi');
+
+insert into person
+values('TJ936576','Anushka K','H-9,New Homes,Jaipur');
+
+insert into person
+values('JV845328','Tarun P','P-21,Karios palace,Bangalore');
+
+insert into person
+values('PY316900','Vinayak N','Lot-4,Mahanagar fields,Chennai');
+
+insert into person
+values('IN8798768','Annie R','146-Parsi Colony,Andheri,Mumbai');
+
+DRIVER_ID  NAME            ADDRESS
+---------- --------------- -----------------------------------
+AA19830    Vedika S        145-Prime Estate,Kharadi,Pune
+MT739023   Vivaan V        A-23,Grand Living,Indiranagar,Delhi
+TJ936576   Anushka K       H-9,New Homes,Jaipur
+JV845328   Tarun P         P-21,Karios palace,Bangalore
+PY316900   Vinayak N       Lot-4,Mahanagar fields,Chennai
+IN8798768  Annie R         146-Parsi Colony,Andheri,Mumbai
+
+II] 
+insert into car
+  values('MH40NI987','Maruti Suzuki',2015);
+
+insert into car
+  values('DL05MO905','Honda Civic',2023);
+
+insert into car
+  values('RJ67NP567','Volkswagen',2017);
+
+insert into car
+  values('KA01YT089','Hyundai',2021);
+
+insert into car
+  values('TN09KI864','Swift Dezire',2013);
+
+insert into car
+  values('MH02BJ634','MG',2022);
+
+REGNO                MODEL                                YEAR
+-------------------- ------------------------------ ----------
+MH40NI987            Maruti Suzuki                        2015
+DL05MO905            Honda Civic                          2023
+RJ67NP567            Volkswagen                           2017
+KA01YT089            Hyundai                              2021
+TN09KI864            Swift Dezire                         2013
+MH02BJ634            MG                                   2022
+
+III]
+insert into accident
+values(86,'23-May-2022','Vishwavidyalaya junction,Delhi');
+
+insert into accident
+values(988,To_Date('2021-09-12','yyyy-mm-dd'),'Linking Road,Bandra');
+
+insert into accident
+ values(7632,To_Date('2019-03-02','yyyy-mm-dd'),'Sarojini Nagar,Delhi');
+
+insert into accident
+values(845,To_Date('2023-10-25','yyyy-mm-dd'),'Udaipur palace');
+
+insert into accident
+values(978,To_Date('2024-01-06','yyyy-mm-dd'),'Janpath,Delhi');
+
+insert into accident
+values(12,'24-feb-2019','airport road,Delhi');
+
+REPORT_NUMBER ACCD_DATE LOCATION
+------------- --------- --------------------------------------------------
+           86 23-MAY-22 Vishwavidyalaya junction,Delhi
+          988 12-SEP-21 Linking Road,Bandra
+         7632 02-MAR-19 Sarojini Nagar,Delhi
+          845 25-OCT-23 Udaipur palace
+          978 06-JAN-24 Janpath,Delhi
+           12 24-FEB-19 airport road,Delhi
+
+IV]
+insert into owns
+values('AA19830','MH40NI987');
+
+insert into owns
+values('MT739023','DL05MO905');
+
+insert into owns
+values('TJ936576','RJ67NP567');
+
+insert into owns
+values('JV845328','KA01YT089');
+
+insert into owns
+values('PY316900','TN09KI864');
+
+insert into owns
+values('IN8798768','MH02BJ634');
+
+
+DRIVER_ID                      REGNO
+------------------------------ --------------------
+AA19830                        MH40NI987
+IN8798768                      MH02BJ634
+JV845328                       KA01YT089
+MT739023                       DL05MO905
+PY316900                       TN09KI864
+TJ936576                       RJ67NP567
+
+V]
+insert into participated
+values('AA19830','MH40NI987',250,988);
+
+insert into participated
+values('MT739023','DL05MO905',1000,86);
+
+insert into participated
+values('MT739023','DL05MO905',100000,7632);
+
+insert into participated
+values('MT739023','DL05MO905',5000,978);
+
+insert into participated
+values('TJ936576','RJ67NP567',15000,845);
+
+insert into participated
+values('MT739023','DL05MO905',900,12);
+
+DRIVER_ID                      REGNO                DAMAGE_AMOUNT REPORT_NUMBER
+------------------------------ -------------------- ------------- -------------
+AA19830                        MH40NI987                      250           988
+MT739023                       DL05MO905                     1000            86
+MT739023                       DL05MO905                   100000          7632
+MT739023                       DL05MO905                     5000           978
+TJ936576                       RJ67NP567                    15000           845
+MT739023                       DL05MO905                      900            12
+
+iii)
+update participated
+set damage_amount=2500
+where report_number=12;
+
+DRIVER_ID                      REGNO                DAMAGE_AMOUNT REPORT_NUMBER
+------------------------------ -------------------- ------------- -------------
+AA19830                        MH40NI987                      250           988
+MT739023                       DL05MO905                     1000            86
+MT739023                       DL05MO905                   100000          7632
+MT739023                       DL05MO905                     5000           978
+TJ936576                       RJ67NP567                    15000           845
+MT739023                       DL05MO905                     2500            12
+
+iv)
+delete from accident where extract(year from accd_date)=2023;
+REPORT_NUMBER ACCD_DATE LOCATION
+------------- --------- --------------------------------------------------
+           86 23-MAY-22 Vishwavidyalaya junction,Delhi
+          988 12-SEP-21 Linking Road,Bandra
+         7632 02-MAR-19 Sarojini Nagar,Delhi
+          978 06-JAN-24 Janpath,Delhi
+           12 24-FEB-19 airport road,Delhi
+
+DRIVER_ID                      REGNO                DAMAGE_AMOUNT REPORT_NUMBER
+------------------------------ -------------------- ------------- -------------
+AA19830                        MH40NI987                      250           988
+MT739023                       DL05MO905                     1000            86
+MT739023                       DL05MO905                     5000           978
+MT739023                       DL05MO905                      900            12
+
+
+v)
+alter table person add age int;
+DRIVER_ID  NAME            ADDRESS                                    AGE
+---------- --------------- ----------------------------------- ----------
+AA19830    Vedika S        145-Prime Estate,Kharadi,Pune
+MT739023   Vivaan V        A-23,Grand Living,Indiranagar,Delhi
+TJ936576   Anushka K       H-9,New Homes,Jaipur
+JV845328   Tarun P         P-21,Karios palace,Bangalore
+PY316900   Vinayak N       Lot-4,Mahanagar fields,Chennai
+IN8798768  Annie R         146-Parsi Colony,Andheri,Mumbai
+
+alter table person drop column age;
+DRIVER_ID  NAME            ADDRESS
+---------- --------------- -----------------------------------
+AA19830    Vedika S        145-Prime Estate,Kharadi,Pune
+MT739023   Vivaan V        A-23,Grand Living,Indiranagar,Delhi
+TJ936576   Anushka K       H-9,New Homes,Jaipur
+JV845328   Tarun P         P-21,Karios palace,Bangalore
+PY316900   Vinayak N       Lot-4,Mahanagar fields,Chennai
+IN8798768  Annie R         146-Parsi Colony,Andheri,Mumbai
+
+vi)
+ alter table participated add check(damage_amount>100);

@@ -1,0 +1,19 @@
+E:\220953138\Calculator\Calculator\bin\Debug\Calculator.exe.config
+E:\220953138\Calculator\Calculator\bin\Debug\Calculator.exe
+E:\220953138\Calculator\Calculator\bin\Debug\Calculator.pdb
+E:\220953138\Calculator\Calculator\obj\Debug\Calculator.csprojResolveAssemblyReference.cache
+E:\220953138\Calculator\Calculator\obj\Debug\Calculator.Form1.resources
+E:\220953138\Calculator\Calculator\obj\Debug\Calculator.Properties.Resources.resources
+E:\220953138\Calculator\Calculator\obj\Debug\Calculator.csproj.GenerateResource.Cache
+E:\220953138\Calculator\Calculator\obj\Debug\Calculator.exe
+E:\220953138\Calculator\Calculator\obj\Debug\Calculator.pdb
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Calculator\Calculator\obj\Debug\Calculator.exe
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Calculator\Calculator\obj\Debug\Calculator.pdb
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Calculator\Calculator\bin\Debug\Calculator.exe.config
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Calculator\Calculator\bin\Debug\Calculator.exe
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Calculator\Calculator\bin\Debug\Calculator.pdb
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Calculator\Calculator\obj\Debug\Calculator.csproj.AssemblyReference.cache
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Calculator\Calculator\obj\Debug\Calculator.Form1.resources
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Calculator\Calculator\obj\Debug\Calculator.Properties.Resources.resources
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Calculator\Calculator\obj\Debug\Calculator.csproj.GenerateResource.cache
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\Calculator\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache

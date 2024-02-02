@@ -1,0 +1,9 @@
+E:\220953138\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe.config
+E:\220953138\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.exe
+E:\220953138\WindowsFormsApplication\WindowsFormsApplication\bin\Debug\WindowsFormsApplication.pdb
+E:\220953138\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csprojResolveAssemblyReference.cache
+E:\220953138\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.Form1.resources
+E:\220953138\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.Properties.Resources.resources
+E:\220953138\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.csproj.GenerateResource.Cache
+E:\220953138\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.exe
+E:\220953138\WindowsFormsApplication\WindowsFormsApplication\obj\Debug\WindowsFormsApplication.pdb

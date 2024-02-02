@@ -1,0 +1,21 @@
+E:\220953138\StudentForm\StudentForm\bin\Debug\StudentForm.exe.config
+E:\220953138\StudentForm\StudentForm\bin\Debug\StudentForm.exe
+E:\220953138\StudentForm\StudentForm\bin\Debug\StudentForm.pdb
+E:\220953138\StudentForm\StudentForm\obj\Debug\StudentForm.csprojResolveAssemblyReference.cache
+E:\220953138\StudentForm\StudentForm\obj\Debug\StudentForm.Form1.resources
+E:\220953138\StudentForm\StudentForm\obj\Debug\StudentForm.Properties.Resources.resources
+E:\220953138\StudentForm\StudentForm\obj\Debug\StudentForm.csproj.GenerateResource.Cache
+E:\220953138\StudentForm\StudentForm\obj\Debug\StudentForm.exe
+E:\220953138\StudentForm\StudentForm\obj\Debug\StudentForm.pdb
+E:\220953138\StudentForm\StudentForm\obj\Debug\StudentForm.Form2.resources
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\StudentForm\StudentForm\bin\Debug\StudentForm.exe.config
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\StudentForm\StudentForm\bin\Debug\StudentForm.exe
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\StudentForm\StudentForm\bin\Debug\StudentForm.pdb
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\StudentForm\StudentForm\obj\Debug\StudentForm.csproj.AssemblyReference.cache
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\StudentForm\StudentForm\obj\Debug\StudentForm.Form1.resources
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\StudentForm\StudentForm\obj\Debug\StudentForm.Form2.resources
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\StudentForm\StudentForm\obj\Debug\StudentForm.Properties.Resources.resources
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\StudentForm\StudentForm\obj\Debug\StudentForm.csproj.GenerateResource.cache
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\StudentForm\StudentForm\obj\Debug\StudentForm.csproj.CoreCompileInputs.cache
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\StudentForm\StudentForm\obj\Debug\StudentForm.exe
+C:\Users\anush\OneDrive\Documents\ACADEMICS\SEM 4\DBMS LAB\StudentForm\StudentForm\obj\Debug\StudentForm.pdb

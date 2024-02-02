@@ -1,0 +1,51 @@
+1)
+select count(distinct driver_id)
+from accident natural join participated
+where extract(year from accd_date)=2019;
+
+COUNT(DISTINCTDRIVER_ID)
+------------------------
+                       1
+
+2)
+select count(report_number)
+from car natural join participated
+where model='Honda Civic';
+
+COUNT(REPORT_NUMBER)
+--------------------
+                   3
+
+3)
+select name as owner_name,count(distinct report_number),sum(damage_amount)
+from person natural join participated
+group by name
+order by sum(damage_amount) desc;
+
+OWNER_NAME      COUNT(DISTINCTREPORT_NUMBER) SUM(DAMAGE_AMOUNT)
+--------------- ---------------------------- ------------------
+Vivaan V                                   3               6900
+Vedika S                                   1                250
+
+4)
+select name
+from (person natural join participated) join accident using(report_number)
+group by name,extract(year from accd_date) having count(report_number)>2;
+NAME
+---------------
+Vivaan V
+
+5)
+select name
+from person
+where(driver_id) not in(
+select driver_id
+from participated);
+
+NAME
+---------------
+Annie R
+Tarun P
+Vinayak N
+Anushka K
+
