@@ -14,7 +14,7 @@ where model='Honda Civic';
 
 COUNT(REPORT_NUMBER)
 --------------------
-                   3
+                   4
 
 3)
 select name as owner_name,count(distinct report_number),sum(damage_amount)

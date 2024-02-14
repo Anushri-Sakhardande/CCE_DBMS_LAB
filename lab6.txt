@@ -1,0 +1,54 @@
+2) :(
+create or replace trigger driver_info
+after insert on participated
+for each row
+begin
+select *
+from person
+where :new.driver_id=person.driver_id;
+end;
+/
+
+3) :)
+create or replace function total_accd
+(year in int)
+return int
+as
+total int;
+begin
+select count(report_number)
+into total
+from accident
+where extract(year from accd_date)=year;
+return total;
+end;
+/
+
+TOTAL_ACCD(2019)
+----------------
+               2
+
+4) :(
+create or replace procedure tot_damage
+(driver varchar(20),year int) is
+damage int;
+begin 
+select sum(damage_amount) into damage
+ from participated pa
+    join accident ac on pa.report_number = ac.report_number
+    where pa.driver_id = driver and extract(year from ac.accd_date) = year;
+dbms_output.put_line('Total damage:'|| damage);
+end;
+/
+
+5) :(
+create or replace procedure accident_info(location_value varchar(50)) IS
+begin
+    for accident_rec in 
+	(select * from accident where location = location_value) loop
+        dbms_output.put_line('Report Number: ' || accident_rec.report_number || ', Date: ' || accident_rec.accd_date || ', Location: ' || accident_rec.location);
+   end loop;
+end;
+/
+
+

@@ -1,0 +1,335 @@
+1)
+create table student(
+regno varchar(20),
+name varchar(50),
+major varchar(20),
+bdate date,
+constraint skey primary key(regno));
+
+create table course(
+course# int,
+cname varchar(30),
+dept varchar(30),
+constraint ckey primary key(course#));
+
+create table enroll(
+regno varchar(20),
+course# int,
+sem int,
+book_isbn int,
+constraint ekey primary key(regno,course#),
+constraint efkey1 foreign key(course#) references course,
+constraint efkey2 foreign key(regno) references student);
+alter table enroll add constraint efkey3 foreign key(book_isbn) references text;
+
+create table book_adoption(
+course# int,
+sem int,
+book_isbn int,
+constraint bkey primary key(course#,book_isbn),
+constraint bfkey1 foreign key(course#) references course,
+constraint bfkey2 foreign key(book_isbn) references text);
+
+create table text(
+book_isbn int,
+booktitle varchar(50),
+publisher varchar(50),
+author varchar(50),
+constraint tkey primary key(book_isbn));
+
+2)
+insert into student
+values('602','Ajitha','Acting','09-Mar-2003');
+
+insert into student
+values('002','Sindhu','Engineering','09-Jun-2004');
+
+insert into student
+values('138','Anushri','Literature','23-Sep-2004');
+
+insert into student
+values('128','Ashwin','Engineering','17-Oct-2004');
+
+insert into student
+values('110','Prakhar','Marketing','14-Mar-2004');
+
+insert into student
+values('654','Vedika','Economics','24-Feb-2002');
+
+insert into student
+values('348','Vivaan','Geography','08-Nov-2015');
+
+insert into student
+values('324','Viraj','Politics','07-May-1973');
+
+insert into student
+values('328','Vibhuti','Psychology','16-Sep-1976');
+
+insert into student 
+values('41','Uma','Art','10-Jan-2024);
+
+
+REGNO                NAME                 MAJOR                BDATE
+-------------------- -------------------- -------------------- ---------
+602                  Ajitha               Acting               09-MAR-03
+002                  Sindhu               Engineering          09-JUN-04
+138                  Anushri              Literature           23-SEP-04
+128                  Ashwin               Engineering          17-OCT-04
+110                  Prakhar              Marketing            14-MAR-04
+654                  Vedika               Economics            24-FEB-02
+348                  Vivaan               Geography            08-NOV-15
+324                  Viraj                Politics             07-MAY-73
+328                  Vibhuti              Psychology           16-SEP-76
+41                   Uma		  Art                  10-JAN-24
+
+insert into course
+values(123,'Introduction to Computers','Comp. Sci.');
+
+insert into course
+values(320,'Behavioural Psychology','Psych');
+
+insert into course
+values(563,'Cinematography','Film');
+
+insert into course
+values(221,'World Relations','Pol. Sci.');
+
+insert into course
+values(097,'Social Media Trends','Market');
+
+insert into course
+values(642,'Modern Feminist Lit','Lit.');
+
+insert into course
+values(057,'Aerospace Engg.','Mech Engg.');
+
+insert into course
+values(612,'Environment','Geog.');
+
+insert into course
+values(845,'Political Economics','Econ.');
+
+   COURSE# CNAME                          DEPT
+---------- ------------------------------ ------------------------------
+       123 Introduction to Computers      Comp. Sci.
+       320 Behavioural Psychology         Psych
+       563 Cinematography                 Film
+       221 World Relations                Pol. Sci.
+        97 Social Media Trends            Market
+       642 Modern Feminist Lit            Lit.
+        57 Aerospace Engg.                Mech Engg.
+       612 Environment                    Geog.
+       845 Political Economics            Econ.
+
+insert into enroll
+values('602',563,3,654321);
+
+insert into enroll
+values('002',123,1,981789);
+
+insert into enroll
+values('002',57,1,123156);
+
+insert into enroll
+values('138',642,2,127106);
+
+insert into enroll
+values('138',563,2,654321);
+
+insert into enroll
+values('138',845,2,742354);
+
+insert into enroll
+values('128',123,1,981789);
+
+insert into enroll
+values('128',57,1,123156);
+
+insert into enroll
+values('110',320,4,7824356);
+
+insert into enroll
+values('110',97,4,532457);
+
+insert into enroll
+values('654',845,7,742354);
+
+insert into enroll
+values('654',563,7,654321);
+
+insert into enroll
+values('348',612,1,245672);
+
+insert into enroll
+values('348',221,1,845672);
+
+insert into enroll
+values('324',221,5,845672);
+
+insert into enroll
+values('324',845,5,742354);
+
+insert into enroll
+values('328',320,5,7824356);
+
+REGNO                   COURSE#        SEM  BOOK_ISBN
+-------------------- ---------- ---------- ----------
+602                         563          3     654321
+002                         123          1     981789
+002                          57          1     123156
+138                         642          2     127106
+138                         563          2     654321
+138                         845          2     742354
+128                         123          1     981789
+128                          57          1     123156
+110                         320          4    7824356
+110                          97          4     532457
+654                         845          7     742354
+
+REGNO                   COURSE#        SEM  BOOK_ISBN
+-------------------- ---------- ---------- ----------
+654                         563          7     654321
+348                         612          1     245672
+348                         221          1     845672
+328                         320          5    7824356
+
+
+insert into text
+values(654321,'Cinema','Pearson','Hitchcock');
+
+insert into text
+values(7824356,'Inside a Mind','Cengage','Freud');
+
+insert into text
+values(981789,'Computing','Springer','Rivest');
+
+insert into text
+values(845672,'Diplomacy','Springer','Gorbechev');
+
+insert into text
+values(532457,'Influencers','Cengage','Chamberlain');
+
+insert into text
+values(127106,'The Bell Jar','Springer','Plath');
+
+insert into text
+values(123156,'Aerospace','Pearson','Martin');
+
+insert into text
+values(245672,'Environment Future','Pearson','Thunberg');
+
+insert into text
+values(742354,'Economics in Politics','Pearson','Banerjee');
+ BOOK_ISBN BOOKTITLE                 PUBLISHER            AUTHOR
+---------- ------------------------- -------------------- --------------------
+    654321 Cinema                    Pearson              Hitchcock
+   7824356 Inside a Mind             Cengage              Freud
+    981789 Computing                 Springer             Rivest
+    845672 Diplomacy                 Springer             Gorbechev
+    532457 Influencers               Cengage              Chamberlain
+    127106 The Bell Jar              Springer             Plath
+    123156 Aerospace                 Pearson              Martin
+    742354 Economics in Politics     Pearson              Banerjee
+    245672 Environment Future        Pearson              Thunberg
+
+INSERT INTO book_adoption VALUES (563, 3, 654321);
+INSERT INTO book_adoption VALUES (123, 1, 981789);
+INSERT INTO book_adoption VALUES (57, 1, 123156);
+INSERT INTO book_adoption VALUES (642, 2, 127106);
+INSERT INTO book_adoption VALUES (845, 2, 742354);
+INSERT INTO book_adoption VALUES (320, 4, 7824356);
+INSERT INTO book_adoption VALUES (97, 4, 532457);
+INSERT INTO book_adoption VALUES (612, 1, 245672);
+INSERT INTO book_adoption VALUES (221, 1, 845672);
+
+INSERT INTO book_adoption VALUES (563, 2, 742354);
+INSERT INTO book_adoption VALUES (123, 1, 123156);
+INSERT INTO book_adoption VALUES (57, 1, 981789);
+
+
+
+   COURSE#        SEM  BOOK_ISBN
+---------- ---------- ----------
+       563          3     654321
+       123          1     981789
+        57          1     123156
+       642          2     127106
+       845          2     742354
+       320          4    7824356
+        97          4     532457
+       612          1     245672
+       221          1     845672
+       563          2     742354
+       123          1     123156
+
+   COURSE#        SEM  BOOK_ISBN
+---------- ---------- ----------
+        57          1     981789
+
+iii)
+
+a)
+
+select course#,cname
+from book_adoption natural join course
+group by course#,cname having count(book_isbn)>1;
+
+   COURSE# CNAME
+---------- ------------------------------
+        57 Aerospace Engg.
+       123 Introduction to Computers
+       563 Cinematography
+
+b)
+
+select distinct dept
+from course 
+where not exists (
+    select *
+    from text natural join book_adoption
+    where book_adoption.course# = course.course#
+    and publisher != 'Springer'
+);
+
+
+DEPT
+------------------------------
+Pol. Sci.
+Lit.
+
+
+c)
+select regno,name
+from student 
+where regno in (
+select regno
+from enroll natural join course
+group by regno having count(dept)>1);
+
+REGNO                NAME
+-------------------- --------------------
+002                  Sindhu
+110                  Prakhar
+128                  Ashwin
+138                  Anushri
+324                  Viraj
+348                  Vivaan
+654                  Vedika
+
+d)
+select *
+from student
+where not exists(
+select distinct regno 
+from enroll
+where student.regno=enroll.regno);
+
+REGNO                NAME                 MAJOR                BDATE
+-------------------- -------------------- -------------------- ---------
+41                   Uma                  Art                  10-JAN-24
+
+e)
+select dept
+from text natural join book_adoption join course using(course#)
+
+

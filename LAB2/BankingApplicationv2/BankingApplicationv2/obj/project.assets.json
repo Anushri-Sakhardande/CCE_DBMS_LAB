@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\anush\\OneDrive\\Documents\\ACADEMICS\\SEM 4\\DBMS LAB\\BankingApplicationv2\\BankingApplicationv2\\BankingApplicationv2.csproj",
+      "projectUniqueName": "C:\\Users\\anush\\OneDrive\\Documents\\ACADEMICS\\SEM 4\\DBMS LAB\\LAB2\\BankingApplicationv2\\BankingApplicationv2\\BankingApplicationv2.csproj",
       "projectName": "BankingApplicationv2",
-      "projectPath": "C:\\Users\\anush\\OneDrive\\Documents\\ACADEMICS\\SEM 4\\DBMS LAB\\BankingApplicationv2\\BankingApplicationv2\\BankingApplicationv2.csproj",
+      "projectPath": "C:\\Users\\anush\\OneDrive\\Documents\\ACADEMICS\\SEM 4\\DBMS LAB\\LAB2\\BankingApplicationv2\\BankingApplicationv2\\BankingApplicationv2.csproj",
       "packagesPath": "C:\\Users\\anush\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\anush\\OneDrive\\Documents\\ACADEMICS\\SEM 4\\DBMS LAB\\BankingApplicationv2\\BankingApplicationv2\\obj\\",
+      "outputPath": "C:\\Users\\anush\\OneDrive\\Documents\\ACADEMICS\\SEM 4\\DBMS LAB\\LAB2\\BankingApplicationv2\\BankingApplicationv2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
