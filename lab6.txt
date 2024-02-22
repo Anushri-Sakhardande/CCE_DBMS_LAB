@@ -1,13 +1,20 @@
-2) :(
+2):)could fix
 create or replace trigger driver_info
 after insert on participated
 for each row
+declare id varchar(30);
 begin
-select *
+select name into id
 from person
 where :new.driver_id=person.driver_id;
+dbms_output.put_line('Driver_id:'||id );
 end;
 /
+
+insert into participated values('MT739023','DL05MO905',900,32);
+Driver_id:MT739023
+
+delete from participated where report_number=32;
 
 3) :)
 create or replace function total_accd
@@ -28,21 +35,28 @@ TOTAL_ACCD(2019)
 ----------------
                2
 
-4) :(
+4) :)
+set serveroutput on
 create or replace procedure tot_damage
-(driver varchar(20),year int) is
+(driver in varchar,year in int) is
 damage int;
 begin 
 select sum(damage_amount) into damage
- from participated pa
-    join accident ac on pa.report_number = ac.report_number
-    where pa.driver_id = driver and extract(year from ac.accd_date) = year;
+ from participated pa natural join accident ac 
+ where pa.driver_id = driver and extract(year from ac.accd_date) = year;
 dbms_output.put_line('Total damage:'|| damage);
 end;
 /
 
-5) :(
-create or replace procedure accident_info(location_value varchar(50)) IS
+execute tot_damage('MT739023',2019);
+
+Total damage:100900
+
+PL/SQL procedure successfully completed.
+
+5) :)
+set serveroutput on
+create or replace procedure accident_info(location_value in varchar) IS
 begin
     for accident_rec in 
 	(select * from accident where location = location_value) loop
@@ -51,4 +65,13 @@ begin
 end;
 /
 
+execute accident_info('airport road,Delhi');
+
+Report Number: 32, Date: 24-FEB-23, Location: airport road,Delhi
+Report Number: 12, Date: 24-FEB-19, Location: airport road,Delhi
+
+PL/SQL procedure successfully completed.
+
+
+Extra
 

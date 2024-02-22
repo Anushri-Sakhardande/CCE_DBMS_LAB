@@ -66,7 +66,7 @@ insert into student
 values('328','Vibhuti','Psychology','16-Sep-1976');
 
 insert into student 
-values('41','Uma','Art','10-Jan-2024);
+values('41','Uma','Art','10-Jan-2024');
 
 
 REGNO                NAME                 MAJOR                BDATE
@@ -174,6 +174,8 @@ values('328',320,5,7824356);
 
 REGNO                   COURSE#        SEM  BOOK_ISBN
 -------------------- ---------- ---------- ----------
+324                         221          5     845672
+324                         845          5     742354
 602                         563          3     654321
 002                         123          1     981789
 002                          57          1     123156
@@ -183,16 +185,15 @@ REGNO                   COURSE#        SEM  BOOK_ISBN
 128                         123          1     981789
 128                          57          1     123156
 110                         320          4    7824356
-110                          97          4     532457
-654                         845          7     742354
 
 REGNO                   COURSE#        SEM  BOOK_ISBN
 -------------------- ---------- ---------- ----------
+110                          97          4     532457
+654                         845          7     742354
 654                         563          7     654321
 348                         612          1     245672
 348                         221          1     845672
 328                         320          5    7824356
-
 
 insert into text
 values(654321,'Cinema','Pearson','Hitchcock');
@@ -220,8 +221,12 @@ values(245672,'Environment Future','Pearson','Thunberg');
 
 insert into text
 values(742354,'Economics in Politics','Pearson','Banerjee');
+
+insert into text
+values(247822,'College Mathematics','Pearson','Grewal');
  BOOK_ISBN BOOKTITLE                 PUBLISHER            AUTHOR
 ---------- ------------------------- -------------------- --------------------
+    247822 College Mathematics       Pearson              Grewal
     654321 Cinema                    Pearson              Hitchcock
    7824356 Inside a Mind             Cengage              Freud
     981789 Computing                 Springer             Rivest
@@ -241,15 +246,15 @@ INSERT INTO book_adoption VALUES (320, 4, 7824356);
 INSERT INTO book_adoption VALUES (97, 4, 532457);
 INSERT INTO book_adoption VALUES (612, 1, 245672);
 INSERT INTO book_adoption VALUES (221, 1, 845672);
-
 INSERT INTO book_adoption VALUES (563, 2, 742354);
 INSERT INTO book_adoption VALUES (123, 1, 123156);
 INSERT INTO book_adoption VALUES (57, 1, 981789);
-
+INSERT INTO book_adoption VALUES (320,4,532457);
 
 
    COURSE#        SEM  BOOK_ISBN
 ---------- ---------- ----------
+       320          4     532457
        563          3     654321
        123          1     981789
         57          1     123156
@@ -260,10 +265,10 @@ INSERT INTO book_adoption VALUES (57, 1, 981789);
        612          1     245672
        221          1     845672
        563          2     742354
-       123          1     123156
 
    COURSE#        SEM  BOOK_ISBN
 ---------- ---------- ----------
+       123          1     123156
         57          1     981789
 
 iii)
@@ -285,7 +290,7 @@ b)
 select distinct dept
 from course 
 where not exists (
-    select *
+    select course#
     from text natural join book_adoption
     where book_adoption.course# = course.course#
     and publisher != 'Springer'
@@ -298,13 +303,26 @@ Pol. Sci.
 Lit.
 
 
+select dept
+from course 
+where not exists (
+    select course#
+    from text natural join book_adoption
+    where book_adoption.course# = course.course#
+    and publisher != 'Springer'
+)
+group by dept having count(course#)=
+(select count(course#)
+from course
+group by dept);
+
 c)
 select regno,name
 from student 
 where regno in (
 select regno
 from enroll natural join course
-group by regno having count(dept)>1);
+group by regno having count(distict dept));
 
 REGNO                NAME
 -------------------- --------------------
@@ -319,17 +337,86 @@ REGNO                NAME
 d)
 select *
 from student
-where not exists(
+where regno not in(
 select distinct regno 
-from enroll
-where student.regno=enroll.regno);
+from enroll);
 
 REGNO                NAME                 MAJOR                BDATE
 -------------------- -------------------- -------------------- ---------
 41                   Uma                  Art                  10-JAN-24
 
 e)
+:(
 select dept
 from text natural join book_adoption join course using(course#)
+where publisher='Cengage'
+group by dept having count(book_isbn)=
+(select count(book_isbn)
+from text
+where publisher='Cengage');
+
+DEPT
+------------------------------
+Psych
 
 
+
+f)
+select booktitle 
+from text
+where book_isbn in(
+select distinct book_isbn 
+from book_adoption join enroll using(book_isbn));
+
+BOOKTITLE
+-------------------------
+Cinema
+Inside a Mind
+Computing
+Diplomacy
+Influencers
+The Bell Jar
+Aerospace
+Economics in Politics
+Environment Future
+
+g)
+select course#,cname
+from (text natural join book_adoption) join course using(course#)
+where publisher='Pearson'
+group by course#,cname having count(distinct book_isbn)>=2;
+
+   COURSE# CNAME
+---------- ------------------------------
+       563 Cinematography
+
+h)
+select regno,name,count(book_isbn)
+from enroll natural join student
+group by regno,name having count(book_isbn)>=all
+(select count(book_isbn)
+from enroll natural join student 
+group by regno);
+
+REGNO                NAME                 COUNT(BOOK_ISBN)
+-------------------- -------------------- ----------------
+138                  Anushri                             3
+
+i)
+select publisher,count(book_isbn)
+from(select * from text)
+group by publisher;
+
+PUBLISHER            COUNT(BOOK_ISBN)
+-------------------- ----------------
+Springer                            3
+Cengage                             2
+Pearson                             5
+
+j)
+select *
+from enroll natural join student
+where exists
+(select book_isbn
+from book_adoption
+where book_adoption.course#=enroll.course#);
