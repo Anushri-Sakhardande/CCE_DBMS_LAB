@@ -302,20 +302,6 @@ DEPT
 Pol. Sci.
 Lit.
 
-
-select dept
-from course 
-where not exists (
-    select course#
-    from text natural join book_adoption
-    where book_adoption.course# = course.course#
-    and publisher != 'Springer'
-)
-group by dept having count(course#)=
-(select count(course#)
-from course
-group by dept);
-
 c)
 select regno,name
 from student 
@@ -350,15 +336,14 @@ e)
 select dept
 from text natural join book_adoption join course using(course#)
 where publisher='Cengage'
-group by dept having count(book_isbn)=
-(select count(book_isbn)
+group by dept having count(distinct book_isbn)=
+(select count(distinct book_isbn)
 from text
 where publisher='Cengage');
 
 DEPT
 ------------------------------
 Psych
-
 
 
 f)
@@ -379,6 +364,7 @@ The Bell Jar
 Aerospace
 Economics in Politics
 Environment Future
+
 
 g)
 select course#,cname
@@ -404,7 +390,10 @@ REGNO                NAME                 COUNT(BOOK_ISBN)
 
 i)
 select publisher,count(book_isbn)
-from(select * from text)
+from text
+where book_isbn in(
+select book_isbn
+from text)
 group by publisher;
 
 PUBLISHER            COUNT(BOOK_ISBN)
@@ -414,9 +403,22 @@ Cengage                             2
 Pearson                             5
 
 j)
-select *
+select distinct regno,name
 from enroll natural join student
 where exists
 (select book_isbn
 from book_adoption
 where book_adoption.course#=enroll.course#);
+
+
+REGNO                NAME
+-------------------- --------------------
+002                  Sindhu
+128                  Ashwin
+110                  Prakhar
+324                  Viraj
+348                  Vivaan
+328                  Vibhuti
+138                  Anushri
+602                  Ajitha
+654                  Vedika
