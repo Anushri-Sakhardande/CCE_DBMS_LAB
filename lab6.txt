@@ -90,33 +90,140 @@ create table T1(
 driver_id varchar(20),
 name varchar(30),
 address varchar(50),
+tot_damage int,
 primary key(driver_id));
 
-create or replace procedure accident_info_exceeds() IS
-v_driver_id participated.driver_id%TYPE;
-    v_year accident.accd_date%TYPE;
+CREATE OR REPLACE PROCEDURE accident_info_exceeds IS
     v_total_damage NUMBER;
-begin
-	FOR driver_rec IN (SELECT DISTINCT driver_id FROM participated) LOOP
-        FOR year_rec IN (SELECT DISTINCT EXTRACT(YEAR FROM accd_date) AS year FROM accident) LOOP
-            -- Calculate the total damage amount for the current driver and year
-            SELECT SUM(pa.damage_amount)
-            INTO v_total_damage
-            FROM participated pa
-            JOIN accident ac ON pa.report_number = ac.report_number
-            WHERE pa.driver_id = driver_rec.driver_id
-            AND EXTRACT(YEAR FROM ac.accd_date) = year_rec.year;
+BEGIN
+    FOR driver_rec IN (SELECT DISTINCT p.driver_id, p.name, p.address
+                       FROM person p
+                       JOIN participated pa ON p.driver_id = pa.driver_id)
+    LOOP
+        SELECT SUM(pa.damage_amount)
+        INTO v_total_damage
+        FROM participated pa
+        WHERE pa.driver_id = driver_rec.driver_id;
 
-            -- Check if the total damage amount exceeds 50000
-            IF v_total_damage > 50000 THEN
-                -- Insert the person's information into table T1
-                INSERT INTO T1 (driver_id, year)
-                VALUES (driver_rec.driver_id, year_rec.year);
-                COMMIT;
-                DBMS_OUTPUT.PUT_LINE('Person inserted into table T1 due to exceeding damage limit. Driver ID: ' || driver_rec.driver_id || ', Year: ' || year_rec.year);
-            END IF;
-        END LOOP;
+        IF v_total_damage > 50000 THEN
+            INSERT INTO T1 (driver_id, name, address, tot_damage)
+            VALUES (driver_rec.driver_id, driver_rec.name, driver_rec.address, v_total_damage);
+            COMMIT;
+        END IF;
     END LOOP;
+END;
+/
+
+select * from T1;
+
+DRIVER_ID            NAME
+-------------------- ------------------------------
+ADDRESS                                            TOT_DAMAGE
+-------------------------------------------------- ----------
+MT739023             Vivaan V
+A-23,Grand Living,Indiranagar,Delhi                    109400
+
+
+2)
+
+
+
+
+3)
+
+CREATE OR REPLACE TRIGGER intimate_driver
+BEFORE INSERT ON participated
+FOR EACH ROW
+DECLARE 
+    driver_name person.name%TYPE; 
+    total_accident NUMBER;
+BEGIN
+    SELECT COUNT(DISTINCT report_number), name 
+    INTO total_accident, driver_name
+    FROM participated pa
+    JOIN person p ON pa.driver_id = p.driver_id
+    WHERE pa.driver_id = :new.driver_id
+    GROUP BY p.name;
+
+    IF total_accident = 3 THEN
+        DBMS_OUTPUT.PUT_LINE('Driver: ' || driver_name || ' has reached 3 accidents.');
+    END IF;
+END;
+/
+
+insert into accident
+values(10004,To_Date('2022-09-12','yyyy-mm-dd'),'Sion');
+insert into accident
+values(854,To_Date('2021-09-12','yyyy-mm-dd'),'Kurla');
+
+
+insert into participated
+values('AA19830','MH40NI987',110,10004);
+insert into participated
+values('AA19830','MH40NI987',300,854);
+
+delete from participated where report_number=854;
+
+4)
+
+set serveroutput on
+create or replace function withdraw(accid char, withamt number) is
+minbal constant number := 1000;
+bal number;
+newbal number;
+count1 number;
+begin
+	select count(*) into count1
+	from tbl_account
+	where accounted = accid;
+	if count1 = 0 then
+		dbms_output.put_line(‘No Account’);
+	else
+		select balance into bal
+		from tbl_account
+		where accounted = accid;
+
+		newbal := bal – withamt;
+		if newbal < minbal then
+			dbms_output.put_line(‘Cannot withdraw’);
+		else 
+			update tabl_account set balance = newbal
+			where accointid = accid;
+			commit;
+			dbms_output.put_line(‘New balance: ‘||newbal);
+		end if;
+	end if;
 end;
 /
+
+
+5)
+
+CREATE OR REPLACE PROCEDURE Discount
+AS
+	CURSOR c_group_discount
+	IS
+	  SELECT distinct s.course_no, c.description
+		FROM section s, enrollment e, course c
+		WHERE s.section_id = e.section_id
+			AND c.course_no = s.course_no
+	   	GROUP BY s.course_no, c.description, e.section_id
+	   	HAVING COUNT(*) >=80;
+BEGIN     // For these courses 5% discount have to be given
+
+FOR r_group_discount IN c_group_discount LOOP
+		UPDATE course
+			SET cost = cost * 0.95
+		WHERE course_no = r_group_discount.course_no;
+
+		DBMS_OUTPUT.PUT_LINE
+			('A 5% discount has been given to'||
+			r_group_discount.course_no||' '||
+			r_group_discount.description
+			);
+	END LOOP;
+END;
+/
+
+
 
