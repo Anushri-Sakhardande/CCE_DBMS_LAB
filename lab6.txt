@@ -125,30 +125,78 @@ A-23,Grand Living,Indiranagar,Delhi                    109400
 
 
 2)
+create table accident_details_table(
+report_number number,
+accd_date date,
+location varchar(60));
+
+create or replace procedure store_accident_details as
+cursor accident_cursor is
+select report_number, accd_date, location
+from accident;
+begin
+for accident_rec in accident_cursor loop
+insert into accident_details_table (report_number, accd_date, location)
+values (accident_rec.report_number, accident_rec.accd_date, accident_rec.location);
+end loop;
+end;
+/
+
+REPORT_NUMBER ACCD_DATE
+------------- ---------
+LOCATION
+------------------------------------------------------------
+           86 23-MAY-22
+Vishwavidyalaya junction,Delhi
+
+          988 12-SEP-21
+Linking Road,Bandra
+
+         7632 02-MAR-19
+Sarojini Nagar,Delhi
 
 
+REPORT_NUMBER ACCD_DATE
+------------- ---------
+LOCATION
+------------------------------------------------------------
+          854 12-SEP-21
+Kurla
+
+          978 06-JAN-24
+Janpath,Delhi
+
+           12 24-FEB-19
+airport road,Delhi
+
+
+REPORT_NUMBER ACCD_DATE
+------------- ---------
+LOCATION
+------------------------------------------------------------
+           32 24-FEB-23
+airport road,Delhi
+
+        10004 12-SEP-22
+Sion
 
 
 3)
 
-CREATE OR REPLACE TRIGGER intimate_driver
-BEFORE INSERT ON participated
-FOR EACH ROW
-DECLARE 
-    driver_name person.name%TYPE; 
-    total_accident NUMBER;
-BEGIN
-    SELECT COUNT(DISTINCT report_number), name 
-    INTO total_accident, driver_name
-    FROM participated pa
-    JOIN person p ON pa.driver_id = p.driver_id
-    WHERE pa.driver_id = :new.driver_id
-    GROUP BY p.name;
-
-    IF total_accident = 3 THEN
-        DBMS_OUTPUT.PUT_LINE('Driver: ' || driver_name || ' has reached 3 accidents.');
-    END IF;
-END;
+create or replace trigger initimate_driver_accident
+after insert on participated
+for each row
+declare
+accident_count number;
+begin
+select count(*)
+into accident_count
+from participated
+where driver_id = :new.driver_id;
+if accident_count = 3 then
+dbms_output.put_line('driver ' || :new.driver_id || ' has reached 3 accidents.');
+end if;
+end;
 /
 
 insert into accident
@@ -163,6 +211,24 @@ insert into participated
 values('AA19830','MH40NI987',300,854);
 
 delete from participated where report_number=854;
+
+
+create or replace trigger initimate_driver_accident
+after insert on participated
+for each row
+declare
+accident_count number;
+begin
+select count(*)
+into accident_count
+from participated
+where driver_id = :new.driver_id;
+if accident_count = 3 then
+dbms_output.put_line('driver ' || :new.driver_id || ' has reached 3 accidents.');
+end if;
+end;
+/
+
 
 4)
 
